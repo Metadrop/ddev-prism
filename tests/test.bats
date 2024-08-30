@@ -37,7 +37,7 @@ teardown() {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get ddev/prism with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ddev/prism
+  ddev get Metadrop/ddev-prism
   ddev restart >/dev/null
   health_checks
 }
