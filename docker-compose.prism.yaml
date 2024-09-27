@@ -3,7 +3,7 @@ services:
   prism:
     container_name: ddev-${DDEV_SITENAME}-prism
     image: stoplight/prism:${PRISM_VERSION:-4.10.5}
-    command: mock -h 0.0.0.0 "/tmp/collections/${PRISM_COLLECTION}"
+    command: mock -h 0.0.0.0 "/tmp/collections/${PRISM_COLLECTION:-example.yml}"
     environment:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
       - HTTP_EXPOSE=4009:4010
@@ -18,7 +18,7 @@ services:
     volumes:
     - ".:/mnt/ddev_config"
     - "ddev-global-cache:/tmp/ddev-global-cache"
-    - ../${PRISM_LOCAL_DIR:-collections/example.yml}:/tmp/collections
+    - ../${PRISM_LOCAL_DIR:-collections}:/tmp/collections
   web:
    links:
      - prism:prism
