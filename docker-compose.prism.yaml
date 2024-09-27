@@ -4,20 +4,21 @@ services:
     container_name: ddev-${DDEV_SITENAME}-prism
     image: stoplight/prism:${PRISM_VERSION:-4.10.5}
     command: mock -h 0.0.0.0 "/tmp/collections/${PRISM_COLLECTION}"
-    networks: [default, ddev_default]
     environment:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
-      - HTTP_EXPOSE=4010:4010
+      - HTTP_EXPOSE=4009:4010
       - HTTPS_EXPOSE=4010:4010
     restart: "no"
     expose:
       - 4010
-    # These labels ensure this service is discoverable by ddev.
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: $DDEV_APPROOT
-
+    networks: [default, ddev_default]
     volumes:
     - ".:/mnt/ddev_config"
     - "ddev-global-cache:/tmp/ddev-global-cache"
     - ../${PRISM_LOCAL_DIR:-collections/example.yml}:/tmp/collections
+  web:
+   links:
+     - prism:prism
