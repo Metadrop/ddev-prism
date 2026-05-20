@@ -10,7 +10,7 @@ services:
       - HTTPS_EXPOSE=4010:4010
     restart: on-failure:3
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:4010"]
+      test: ["CMD", "nc", "-z", "127.0.0.1", "4010"]
       interval: 10s
       timeout: 5s
       retries: 3
