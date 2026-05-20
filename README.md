@@ -1,4 +1,4 @@
-![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 
 ## Prism
 
